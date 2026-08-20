@@ -14,7 +14,7 @@
 - W1: PRD/SPEC + AI spike + Gate 1 (完成, commit 048dd33/732edb5)
 - W2: DESIGN/ADR + 红绿 + Gate 2 + weekly-1 (完成, commit f2a7048/3104056)
 - W3: 端点实现 + test_api + 红绿 (完成, commit dd1e6cb/a324eb0)
-- W4: UAT + Gate 3 + 安全扫描 + weekly-2 + final-report + defense.pptx (待办)
+- W4: UAT + Gate 3 + 安全扫描 + weekly-2 + final-report (完成,不做 PPT, commit b26f29a)
 
 ## 过程资产索引
 
@@ -45,7 +45,7 @@
 - One decision changed during implementation（实现中变更过的一项决策）: top_k 3 -> 5(spike 证明 3 漏召回关键定义片段,见 ADR-003)
 - One test that best proves quality（最能证明质量的一项测试）: tests/test_api.py::test_ask_with_answer(端到端:上传->检索->生成->带 sources)
 - One AI-generated change reviewed manually（人工复核过的一项 AI 生成修改）: spike prompt 调优(严格指令+引用编号要求,人工验证拒绝分支)
-- Latest passing commit（最近通过的提交）: a324eb0 (W3 green API tests 30 passed, check.sh pass)
+- Latest passing commit（最近通过的提交）: b26f29a (W4 final-check: 30 passed, scan clean, no PPT per user request)
 
 ## 已知限制
 
