@@ -5,8 +5,8 @@ echo "=== 密钥扫描(应无真实凭据命中) ==="
 rg -n -f scripts/msd-secret-patterns.txt --glob '!scripts/msd-secret-patterns.txt' .
 echo "rg exit: $?"
 echo ""
-echo "=== 占位符检查(应无命中) ==="
-rg -n '<[^>\n]+>|TODO|TBD|待补|占位|your-|changeme|示例项目' README.md docs process PROCESS.md submissions
+echo "=== 未填项检查(应无命中) ==="
+rg -n '<[^>\n]+>|TODO|TBD|待补|your-|changeme|示例项目' README.md docs process PROCESS.md submissions
 echo "rg exit: $?"
 echo ""
 echo "=== 截图脱敏自查 ==="

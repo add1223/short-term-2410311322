@@ -1,4 +1,4 @@
-"""????:?? + embedding ?? + ???"""
+"""文档上传:切块 + embedding 向量化 + 入库。"""
 from datetime import datetime, timezone
 
 from . import chunker, config, store
@@ -8,7 +8,7 @@ _seq = 0
 
 
 def upload(title, content, llm):
-    """?????????? Document???: ValueError(?) / FileExistsError(??)?"""
+    """切块->向量化->构造 Document 并存储。异常: ValueError(空/切不出) / FileExistsError(重复内容)。"""
     if not title.strip():
         raise ValueError("empty title")
     if not content.strip():

@@ -1,4 +1,4 @@
-"""FastAPI ??:5 ?? + Bearer ?? + ?????LLM ??????(set_llm)?"""
+"""FastAPI 应用:5 个端点 + Bearer 鉴权 + 可替换 LLM 客户端(通过 set_llm 注入)。"""
 from fastapi import FastAPI, Header, HTTPException
 from pydantic import BaseModel
 
