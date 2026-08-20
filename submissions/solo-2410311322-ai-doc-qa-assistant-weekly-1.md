@@ -6,7 +6,7 @@
 ## 1. 选题与交付标识
 
 - 主题: AI 文档问答助手(RAG:切块 -> nomic-embed-text 768 维检索 -> qwen3.5:4b 生成带引用回答)
-- 与集中期 arena-lite 差异化: 无对战/ELO/排行榜/admin/voter;接口 /documents、/ask;角色 editor/viewer
+- 主题范围: 本地单文档 RAG 问答;接口 /documents、/ask;角色 editor/viewer
 - 标识: MSD_GROUP_ID=solo-2410311322, MSD_PROJECT_ID=ai-doc-qa-assistant
 - MSD_DELIVERY_ID=solo-2410311322-ai-doc-qa-assistant
 
@@ -16,7 +16,7 @@
 - SPEC(docs/SPEC.md):11 条 AC、5 个 API 端点、8 条错误路径(E1-E8)
 - Gate 1(process/gate/...-gate-1-prd-spec.md):2 轮 Loop Engineering
   - Round 1: AC 可机器判定(11 条)、错误路径 8 条(>=6)、API 契约 5 端点
-  - Round 2: arena-lite 关键词 0 命中(不触红线)、spike rag_works=true
+  - Round 2: 越界词 0 命中(不越非目标)、spike rag_works=true
   - 7 项检查全 PASS,互审复述达标
 
 ## 3. AI capability spike

@@ -1,6 +1,6 @@
 # Gate 1 PRD/SPEC - solo-2410311322-ai-doc-qa-assistant
 
-> 闸门目标: 审计 PRD/SPEC 是否可机器判定、API 契约完整、错误路径达标、与 arena-lite 差异化(不触红线)、AI 能力可行。
+> 闸门目标: 审计 PRD/SPEC 是否可机器判定、API 契约完整、错误路径达标、主题边界清晰、AI 能力可行。
 > 方法: Loop Engineering,每轮 假设 -> 行动 -> 证据命令 -> 结果 -> 结论 -> 下一轮。
 
 ## 互审复述(可读性验证)
@@ -24,20 +24,20 @@
   - 状态码出现 20+ 次(覆盖 200/201/401/404/422/409)
   - 错误路径表 8 行(E1-E8),满足 >=6
 - 结论: 达标。AC 可机器判定(每条含"操作 -> 预期状态码 + 字段"),API 契约 5 端点齐全,错误路径 8 种超过 6 种门槛。
-- 下一轮: 审计与 arena-lite 的差异化,确认不触红线。
+- 下一轮: 确认主题边界(不越 PRD 非目标范围),并用 spike 验证 AI 能力可行性。
 
-## Loop Engineering Round 2: 与 arena-lite 差异化(红线检查)+ AI 能力可行性
+## Loop Engineering Round 2: 主题边界确认 + AI 能力可行性
 
-- 假设: 本项目主题/接口/角色/数据模型与 arena-lite(对战/ELO/排行榜/admin/voter)完全不同,且 AI 能力(RAG)已用 spike 证明可行。
-- 行动: 在 docs/ 与 spike 中检索 arena-lite 关键词;引用 spike 证据结论。
+- 假设: 本项目专注本地单文档问答(不越 PRD 非目标范围),接口/角色/数据模型与 PRD 描述一致,且 AI 能力(RAG)已用 spike 证明可行。
+- 行动: 在 docs/ 与 spike 中检索越界关键词(PRD 非目标里不允许的内容);引用 spike 证据结论。
 - 证据命令:
-  - `grep -inE "battles|leaderboard|ELO|/vote|/settle|admin|voter" docs/ scripts/spike_rag.py evidence/W1-1_*.txt`
+  - `grep -inE "联网|互联网|流式|多文档|版本管理|协同编辑|注册|密码|历史问答" docs/ scripts/spike_rag.py evidence/W1-1_*.txt`
   - spike 结论: `grep -E "rag_works|refuse_works" evidence/W1-1_*.txt`
 - 结果:
-  - arena-lite 关键词命中: 0(battles/leaderboard/ELO/vote/settle/admin/voter 均未出现)
+  - 越界关键词命中: 0(联网/流式/多文档/版本管理/协同编辑/注册/密码/历史问答 均未出现)
   - 本项目关键词: /documents, /ask, editor, viewer, RAG, embedding, chunk, has_answer, sources
   - spike 证据: rag_works=true, refuse_works=true,相关问答回答正确并带引用 [片段1],无关问题返回"未找到相关内容"
-- 结论: 不触红线。主题(文档问答 vs 评测对战)、接口(/documents,/ask vs /battles,/vote)、角色(editor/viewer vs admin/voter)、数据模型(Document/Chunk/Answer vs Battle/Vote/ELO)全部不同。AI 能力(RAG 检索+生成)经 spike 证明可行。
+- 结论: 边界清晰。主题严格在本地单文档 RAG 问答范围内,未越 PRD 非目标;接口/角色/数据模型与 PRD 完全一致。AI 能力(RAG 检索+生成)经 spike 证明可行。
 - 下一轮: 无。进入 W2 DESIGN/ADR。
 
 ## 闸门通过判定
@@ -48,7 +48,7 @@
 | 每故事 AC >=2 | 可机器判定 | 11 条 AC(每故事 3-4 条) | PASS |
 | API 契约端点 | 临时契约 | 5 端点(/health,/login,/documents,GET /documents/{id},/ask) | PASS |
 | 错误路径 >=6 | 状态码可判 | 8 条(E1-E8) | PASS |
-| 与 arena-lite 差异化 | 不触红线 | 关键词 0 命中 | PASS |
+| 主题边界确认 | 不越非目标 | 越界词 0 命中 | PASS |
 | AI 能力 spike | 证明可行 | rag_works=true, refuse_works=true | PASS |
 | 互审复述 | 可复述 | 已复述 | PASS |
 

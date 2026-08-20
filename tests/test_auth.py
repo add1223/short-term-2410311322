@@ -29,4 +29,4 @@ def test_check_role_invalid_token():
 
 def test_issue_token_invalid_role_rejected():
     with pytest.raises(ValueError):
-        issue_token("admin")  # 不允许 admin(与 arena-lite 区别)
+        issue_token("admin")  # admin 不在允许角色内(editor/viewer)
