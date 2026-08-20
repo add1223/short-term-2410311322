@@ -5,8 +5,8 @@
 
 ## Environment（环境）
 
-- 环境记录: <待补 W1>
-- 模型/API 证据: <待补 W1>
+- 环境记录: evidence/W1-0_solo-2410311322-ai-doc-qa-assistant_environment.md
+- 模型/API 证据: evidence/W1-1_solo-2410311322-ai-doc-qa-assistant_ai-capability-spike.txt (RAG spike, rag_works=true)
 - 截图证据索引: evidence/screenshots/
 - 主启动命令: <待补 W3>
 
@@ -35,7 +35,7 @@
 - Local CI command（本地 CI 命令）: scripts/check.sh
 - API smoke evidence（API 冒烟证据）: <待补 W4>
 - Security scan evidence（安全扫描证据）: <待补 W4>
-- Latest passing commit（最近通过的提交）: <待补>
+- Latest passing commit（最近通过的提交）: 待 W3 提交后补
 
 ## Known Limits（已知限制）
 
@@ -46,3 +46,4 @@
 - One decision changed during implementation（实现中变更过的一项决策）: <待补>
 - One test that best proves quality（最能证明质量的一项测试）: <待补>
 - One AI-generated change reviewed manually（人工复核过的一项 AI 生成修改）: <待补>
+
