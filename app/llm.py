@@ -1,10 +1,8 @@
-﻿"""AI 调用出口:LLMClient 协议 + Ollama 实现 + Fake 测试实现。
+"""AI ????:LLMClient ?? + Ollama ?? + Fake ?????
 
-设计: 真实模型只在 OllamaLLMClient;测试用 FakeLLMClient,不依赖 Ollama。
+??: ?????? OllamaLLMClient;??? FakeLLMClient,??? Ollama?
 """
 from typing import Protocol
-import hashlib
-
 import numpy as np
 
 from . import config
@@ -36,17 +34,20 @@ class OllamaLLMClient:
 
 
 class FakeLLMClient:
-    """确定性测试客户端:embedding 用 sha256 派生,生成按关键词返回固定文案。"""
+    """????????:embedding ????(????->???),?????????????"""
 
     def embed(self, texts):
         out = []
         for t in texts:
-            h = hashlib.sha256(t.encode("utf-8")).digest()
-            vec = np.array([(b - 128) / 128.0 for b in (h * 48)[:768]], dtype=float)
-            out.append(vec.tolist())
+            vec = np.zeros(768, dtype=float)
+            for ch in t:
+                vec[hash(ch) % 768] += 1.0
+            n = np.linalg.norm(vec) + 1e-9
+            out.append((vec / n).tolist())
         return out
 
     def generate(self, prompt):
-        if "天气" in prompt or "无关" in prompt:
-            return "未找到相关内容"
-        return "模拟回答(引用 [片段1])"
+        if "??" in prompt or "??" in prompt:
+            return "???????"
+        return "????(?? [??1])"
+
