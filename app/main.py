@@ -1,11 +1,18 @@
 """FastAPI 应用:5 个端点 + Bearer 鉴权 + 可替换 LLM 客户端(通过 set_llm 注入)。"""
 from fastapi import FastAPI, Header, HTTPException
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 
 from . import auth, documents, qa
 from .llm import OllamaLLMClient
+from .static_index_html import INDEX_HTML
 
-app = FastAPI(title="AI Doc QA Assistant")
+# 把默认 Swagger UI (/docs) 和 ReDoc (/redoc) 移到 /api/ 下，
+# 这样根路径 / 就可以显示我们的中文用户界面，而不是开发者接口文档。
+app = FastAPI(title="AI Doc QA Assistant",
+              docs_url="/api/docs",
+              redoc_url="/api/redoc",
+              openapi_url="/api/openapi.json")
 _llm = None
 
 
@@ -38,6 +45,12 @@ def _bearer(authorization):
     if not authorization or not authorization.startswith("Bearer "):
         raise HTTPException(401, "missing or invalid authorization")
     return authorization[7:]
+
+
+@app.get("/", response_class=HTMLResponse)
+def home():
+    """中文用户首页：登录 / 上传文档 / 提问 / 查看文档信息，一目了然。"""
+    return INDEX_HTML
 
 
 @app.get("/health")
