@@ -7,7 +7,7 @@ OK  submissions/solo-2410311322-ai-doc-qa-assistant-final-report.md
 note: defense.pptx 按用户要求暂未制作(答辩要点见 PROCESS.md/final-report)
 
 == 2. 本地检查 check.sh ==
-30 passed, 1 warning in 4.30s
+30 passed, 1 warning in 4.05s
 == whitespace check ==
 no whitespace errors
 local checks passed
@@ -23,15 +23,15 @@ PROCESS.md
 evidence/W4-1_solo-2410311322-ai-doc-qa-assistant_uat.txt
 evidence/W1-0_solo-2410311322-ai-doc-qa-assistant_environment.md
 submissions/solo-2410311322-ai-doc-qa-assistant-weekly-2.md
-submissions/solo-2410311322-ai-doc-qa-assistant-weekly-1.md
 submissions/solo-2410311322-ai-doc-qa-assistant-final-report.md
+submissions/solo-2410311322-ai-doc-qa-assistant-weekly-1.md
 process/uat/solo-2410311322-ai-doc-qa-assistant-final-uat.md
-process/gate/solo-2410311322-ai-doc-qa-assistant-gate-1-prd-spec.md
 process/gate/solo-2410311322-ai-doc-qa-assistant-gate-2-design.md
 process/task_cards/solo-2410311322-ai-doc-qa-assistant-project-cards.md
 process/gate/solo-2410311322-ai-doc-qa-assistant-gate-3-delivery.md
+process/gate/solo-2410311322-ai-doc-qa-assistant-gate-1-prd-spec.md
 
 == 6. 最终提交号 ==
-ac3d680 [solo-2410311322] remove all refs to previous project topic (arena/battle/ELO/leaderboard/vote/settle/对战/排行榜): gate-1 Round 2 renamed to 主题边界确认, README/weekly-1 wording rewritten, test_auth.py comment cleaned
+c3fd577 [solo-2410311322] regenerate final-check after wording cleanup
 
 ================ 终检完成 ================
