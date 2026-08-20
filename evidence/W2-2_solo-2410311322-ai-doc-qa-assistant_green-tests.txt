@@ -1,0 +1,22 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0 -- /mnt/d/trae/work/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /mnt/d/trae/work
+plugins: anyio-4.14.2
+collecting ... collected 13 items
+
+tests/test_auth.py::test_issue_token_editor PASSED                       [  7%]
+tests/test_auth.py::test_issue_token_viewer PASSED                       [ 15%]
+tests/test_auth.py::test_check_role_editor_allowed PASSED                [ 23%]
+tests/test_auth.py::test_check_role_viewer_cannot_act_as_editor PASSED   [ 30%]
+tests/test_auth.py::test_check_role_invalid_token PASSED                 [ 38%]
+tests/test_auth.py::test_issue_token_invalid_role_rejected PASSED        [ 46%]
+tests/test_chunker.py::test_chunk_text_splits_long_paragraph PASSED      [ 53%]
+tests/test_chunker.py::test_chunk_text_skips_empty_paragraphs PASSED     [ 61%]
+tests/test_chunker.py::test_chunk_text_empty_input PASSED                [ 69%]
+tests/test_chunker.py::test_chunk_text_paragraph_boundary PASSED         [ 76%]
+tests/test_retrieval.py::test_cosine_top_k_orders_by_similarity PASSED   [ 84%]
+tests/test_retrieval.py::test_cosine_top_k_k_larger_than_docs PASSED     [ 92%]
+tests/test_retrieval.py::test_cosine_top_k_identical_vectors_score_one PASSED [100%]
+
+============================= 13 passed in 46.93s ==============================

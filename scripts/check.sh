@@ -1,6 +1,6 @@
-﻿#!/usr/bin/env bash
-# 本地 CI 检查脚本（复用集中期 arena-lite 的三步结构）
-# 随 W3 实现推进,如需扩展(如 mypy、ruff)在此追加。
+#!/usr/bin/env bash
+# ?? CI ?????????? arena-lite ??????
+# ? W3 ????,????(? mypy?ruff)?????
 set -euo pipefail
 
 echo "== python tests =="
@@ -19,6 +19,15 @@ if [ -d tests ]; then
 fi
 
 echo "== whitespace check =="
-git diff --check 2>/dev/null || echo "not a git repo yet, skip whitespace check"
+if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  echo "not a git repo yet, skip whitespace check"
+else
+  if git diff --check; then
+    echo "no whitespace errors"
+  else
+    echo "ERROR: trailing whitespace or CRLF issues found above" >&2
+    exit 1
+  fi
+fi
 
 echo "local checks passed"
