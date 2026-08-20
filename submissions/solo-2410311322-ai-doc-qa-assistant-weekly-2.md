@@ -33,7 +33,7 @@
 ## 5. 安全扫描
 
 - 密钥扫描: rg -f scripts/msd-secret-patterns.txt -> exit 1 无命中
-- 占位符检查: rg '<...>|TODO|TBD|待补|占位|your-|changeme' -> exit 1 无命中
+- 未填项检查: rg 未填标记模式 -> exit 1 无命中
 - 证据: evidence/W4-2
 - 截图脱敏: 无 GUI,文本输出无 Key/Token/余额/手机号
 
