@@ -1,0 +1,24 @@
+﻿=== W2 RED: tests fail before implementation ===
+命令: OLLAMA_HOST=http://127.0.0.1:11435 python -m pytest -q
+结果: 3 errors during collection (Interrupted)
+
+tests/test_chunker.py:2: in <module>
+    from app.chunker import chunk_text
+E   ModuleNotFoundError: No module named 'app.chunker'
+
+tests/test_retrieval.py:3: in <module>
+    from app.retrieval import cosine_top_k
+E   ModuleNotFoundError: No module named 'app.retrieval'
+
+tests/test_auth.py:2: in <module>
+    from app.auth import issue_token, check_role
+E   ModuleNotFoundError: No module named 'app.auth'
+
+=== short test summary info ===
+ERROR tests/test_auth.py
+ERROR tests/test_chunker.py
+ERROR tests/test_retrieval.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 3 errors during collection !!!!!!!!!!!!!!!!!!!!
+3 errors in 65.22s
+
+判定: RED(实现尚未存在,符合测试先行预期)。下一步实现 app/chunker.py, app/retrieval.py, app/auth.py 转 GREEN。
