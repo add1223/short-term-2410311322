@@ -1,8 +1,9 @@
-"""AI ????:LLMClient ?? + Ollama ?? + Fake ?????
+"""AI 调用出口:LLMClient 协议 + Ollama 实现 + Fake 测试实现。
 
-??: ?????? OllamaLLMClient;??? FakeLLMClient,??? Ollama?
+设计: 真实模型只在 OllamaLLMClient;测试用 FakeLLMClient,不依赖 Ollama。
 """
 from typing import Protocol
+
 import numpy as np
 
 from . import config
@@ -34,7 +35,7 @@ class OllamaLLMClient:
 
 
 class FakeLLMClient:
-    """????????:embedding ????(????->???),?????????????"""
+    """确定性测试客户端:embedding 用字符袋(共享字符->高余弦),生成按关键词返回固定文案。"""
 
     def embed(self, texts):
         out = []
@@ -47,7 +48,6 @@ class FakeLLMClient:
         return out
 
     def generate(self, prompt):
-        if "??" in prompt or "??" in prompt:
-            return "???????"
-        return "????(?? [??1])"
-
+        if "天气" in prompt or "无关" in prompt:
+            return "未找到相关内容"
+        return "模拟回答(引用 [片段1])"

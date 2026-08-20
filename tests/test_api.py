@@ -1,4 +1,4 @@
-"""API ????:??? + E1-E8,???? FakeLLMClient mock?"""
+"""API 集成测试:主路径 + E1-E8,模型层用 FakeLLMClient mock。"""
 import pytest
 from fastapi.testclient import TestClient
 
@@ -25,7 +25,7 @@ def editor_token(client):
     return client.post("/login", json={"role": "editor"}).json()["token"]
 
 
-# ---------- ??? ----------
+# ---------- 主路径 ----------
 
 def test_health(client):
     r = client.get("/health")
@@ -51,29 +51,29 @@ def test_login_invalid_role_422(client):
 
 def test_upload_201(client, editor_token):
     r = client.post("/documents",
-                    json={"title": "?????", "content": "TDD ????"},
+                    json={"title": "讲义第三章", "content": "TDD 红绿循环"},
                     headers={"Authorization": f"Bearer {editor_token}"})
     assert r.status_code == 201
     d = r.json()
     assert d["chunks"] >= 1
-    assert d["title"] == "?????"
+    assert d["title"] == "讲义第三章"
 
 
 def test_get_document_200(client, editor_token):
-    r = client.post("/documents", json={"title": "????", "content": "TDD ????"},
+    r = client.post("/documents", json={"title": "获取测试", "content": "TDD 红绿循环"},
                     headers={"Authorization": f"Bearer {editor_token}"})
     doc_id = r.json()["doc_id"]
     r2 = client.get(f"/documents/{doc_id}",
                     headers={"Authorization": f"Bearer {editor_token}"})
     assert r2.status_code == 200
-    assert r2.json()["title"] == "????"
+    assert r2.json()["title"] == "获取测试"
 
 
 def test_ask_with_answer(client, editor_token):
-    r = client.post("/documents", json={"title": "t", "content": "TDD ????"},
+    r = client.post("/documents", json={"title": "t", "content": "TDD 红绿循环"},
                     headers={"Authorization": f"Bearer {editor_token}"})
     doc_id = r.json()["doc_id"]
-    r2 = client.post(f"/documents/{doc_id}/ask", json={"question": "TDD ????"},
+    r2 = client.post(f"/documents/{doc_id}/ask", json={"question": "TDD 红绿循环"},
                      headers={"Authorization": f"Bearer {editor_token}"})
     assert r2.status_code == 200
     a = r2.json()
@@ -83,10 +83,10 @@ def test_ask_with_answer(client, editor_token):
 
 
 def test_ask_no_answer(client, editor_token):
-    r = client.post("/documents", json={"title": "t", "content": "TDD ????"},
+    r = client.post("/documents", json={"title": "t", "content": "TDD 红绿循环"},
                     headers={"Authorization": f"Bearer {editor_token}"})
     doc_id = r.json()["doc_id"]
-    r2 = client.post(f"/documents/{doc_id}/ask", json={"question": "?????"},
+    r2 = client.post(f"/documents/{doc_id}/ask", json={"question": "天气怎么样"},
                      headers={"Authorization": f"Bearer {editor_token}"})
     assert r2.status_code == 200
     a = r2.json()
@@ -97,15 +97,15 @@ def test_ask_no_answer(client, editor_token):
 def test_viewer_can_ask_200(client):
     et = client.post("/login", json={"role": "editor"}).json()["token"]
     vt = client.post("/login", json={"role": "viewer"}).json()["token"]
-    r = client.post("/documents", json={"title": "t", "content": "TDD ????"},
+    r = client.post("/documents", json={"title": "t", "content": "TDD 红绿循环"},
                     headers={"Authorization": f"Bearer {et}"})
     doc_id = r.json()["doc_id"]
-    r2 = client.post(f"/documents/{doc_id}/ask", json={"question": "TDD ????"},
+    r2 = client.post(f"/documents/{doc_id}/ask", json={"question": "TDD 红绿循环"},
                      headers={"Authorization": f"Bearer {vt}"})
     assert r2.status_code == 200
 
 
-# ---------- ???? E1-E8 ----------
+# ---------- 错误路径 E1-E8 ----------
 
 def test_e1_empty_content_422(client, editor_token):
     r = client.post("/documents", json={"title": "t", "content": ""},
@@ -153,7 +153,7 @@ def test_e7_get_missing_doc_404(client, editor_token):
 
 
 def test_e8_duplicate_content_409(client, editor_token):
-    content = "E8 ???????? unique-xyz-99999"
+    content = "E8 重复检测专属内容 unique-xyz-99999"
     r1 = client.post("/documents", json={"title": "a", "content": content},
                      headers={"Authorization": f"Bearer {editor_token}"})
     assert r1.status_code == 201
