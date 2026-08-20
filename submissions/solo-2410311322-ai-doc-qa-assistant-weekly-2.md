@@ -25,6 +25,12 @@
 - 错误路径: 无关问题"天气"->has_answer=false sources=[];viewer 越权->401;不存在 doc->404
 - 修正: spike 阶段 top_k 3->5(ADR-003),SCORE_THRESHOLD=0.6 在 UAT 验证有效(相关 0.69-0.73 命中,无关低于阈值被拒)
 
+## 补充截图证据(本次周志新增)
+
+- evidence/screenshots/solo-2410311322-ai-doc-qa-assistant-W1-repo-exists.png → GitHub 仓库首页:文件结构齐全 + README 含交付标识
+- evidence/screenshots/solo-2410311322-ai-doc-qa-assistant-W3-swagger-endpoints.png → FastAPI /docs Swagger UI 一屏展示 5 个端点(health/login/documents/doc-id/doc-id-ask)
+- evidence/screenshots/solo-2410311322-ai-doc-qa-assistant-final-small-commits.png → GitHub main 分支 18 次提交历史,证明过程可追溯非单一大提交
+
 ## 4. Gate 3
 
 - process/gate/...-gate-3-delivery.md,2 轮 Loop Engineering,7 项检查全 PASS

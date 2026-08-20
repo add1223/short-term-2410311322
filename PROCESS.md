@@ -31,6 +31,7 @@
 - check.sh 证据: evidence/W3-2_solo-2410311322-ai-doc-qa-assistant_check-sh.txt
 - 本地检查脚本: scripts/check.sh
 - RAG spike 脚本: scripts/spike_rag.py
+- 截图证据: evidence/screenshots/solo-2410311322-ai-doc-qa-assistant-{W1-repo-exists,W3-swagger-endpoints,final-small-commits}.png (3 张,答辩 PPT 直接引用)
 
 ## 关键演示信息
 
@@ -45,7 +46,7 @@
 - One decision changed during implementation（实现中变更过的一项决策）: top_k 3 -> 5(spike 证明 3 漏召回关键定义片段,见 ADR-003)
 - One test that best proves quality（最能证明质量的一项测试）: tests/test_api.py::test_ask_with_answer(端到端:上传->检索->生成->带 sources)
 - One AI-generated change reviewed manually（人工复核过的一项 AI 生成修改）: spike prompt 调优(严格指令+引用编号要求,人工验证拒绝分支)
-- Latest passing commit（最近通过的提交）: b26f29a (W4 final-check: 30 passed, scan clean, no PPT per user request)
+- Latest passing commit（最近通过的提交）: e7149e7 (W4 清理 wording 后全通过,30 passed,scan clean,screenshots 3 张入库)
 
 ## 已知限制
 

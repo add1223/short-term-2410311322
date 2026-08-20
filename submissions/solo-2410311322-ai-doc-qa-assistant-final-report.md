@@ -38,6 +38,11 @@ bash scripts/scan_run.sh                                     # 安全扫描
 - 红绿: evidence/W2-1(red), W2-2(green 13), W3-0(red api), W3-1(green 30), W3-2(check.sh)
 - UAT: evidence/W4-1_*uat.txt; 安全: evidence/W4-2_*secret-scan.txt; final-check: evidence/W4-3
 - 周志: submissions/*weekly-1.md, *weekly-2.md
+- GUI 截图证据(3 张,可直接插入答辩 PPT 对应页):
+  - evidence/screenshots/solo-2410311322-ai-doc-qa-assistant-W1-repo-exists.png → 工程质量页(仓库存在/README 含交付标识)
+  - evidence/screenshots/solo-2410311322-ai-doc-qa-assistant-W3-swagger-endpoints.png → 功能架构页(5 端点契约全展示)
+  - evidence/screenshots/solo-2410311322-ai-doc-qa-assistant-final-small-commits.png → 过程可追溯页(18 次小步提交列表)
+
 
 ## 5. 测试与 UAT 结论
 
