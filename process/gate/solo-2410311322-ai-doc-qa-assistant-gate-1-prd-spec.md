@@ -1,4 +1,4 @@
-﻿# Gate 1 PRD/SPEC - solo-2410311322-ai-doc-qa-assistant
+# Gate 1 PRD/SPEC - solo-2410311322-ai-doc-qa-assistant
 
 > 闸门目标: 审计 PRD/SPEC 是否可机器判定、API 契约完整、错误路径达标、与 arena-lite 差异化(不触红线)、AI 能力可行。
 > 方法: Loop Engineering,每轮 假设 -> 行动 -> 证据命令 -> 结果 -> 结论 -> 下一轮。

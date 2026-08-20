@@ -1,4 +1,4 @@
-﻿# ADR-002: embedding 选用 nomic-embed-text 而非 sentence-transformers 或 TF-IDF
+# ADR-002: embedding 选用 nomic-embed-text 而非 sentence-transformers 或 TF-IDF
 
 - 状态: Accepted
 - 日期: 2026-08-20

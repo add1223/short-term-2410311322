@@ -1,4 +1,4 @@
-﻿# AI Doc QA Assistant SPEC v1 - solo-2410311322-ai-doc-qa-assistant
+# AI Doc QA Assistant SPEC v1 - solo-2410311322-ai-doc-qa-assistant
 
 ## 概述
 
@@ -34,11 +34,11 @@
 
 ### POST /login
 - 请求: {"role": "editor"} 或 {"role": "viewer"}
-- 响应 200: {"token": "<token>", "role": "editor"}
+- 响应 200: {"token": "{token}", "role": "editor"}
 - 错误: role 非法 -> 422
 
 ### POST /documents  (editor)
-- 头: Authorization: Bearer <editor_token>
+- 头: Authorization: Bearer {editor_token}
 - 请求: {"title": "讲义第三章", "content": "正文文本..."}
 - 响应 201: {"doc_id": "doc-2410311322-001", "title": "讲义第三章", "chunks": 5, "chars": 1234}
 - 错误: 缺鉴权 401 / viewer 401 / 空 content 422 / 空 title 422
@@ -48,7 +48,7 @@
 - 错误: 不存在 404 / 缺鉴权 401
 
 ### POST /documents/{id}/ask  (editor/viewer)
-- 头: Authorization: Bearer <token>
+- 头: Authorization: Bearer {token}
 - 请求: {"question": "第三章的核心结论是什么?"}
 - 响应 200(有相关): {"answer": "...", "has_answer": true, "sources": [{"chunk_index": 0, "text": "...", "score": 0.83}]}
 - 响应 200(无相关): {"answer": "未找到相关内容", "has_answer": false, "sources": []}

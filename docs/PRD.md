@@ -1,4 +1,4 @@
-﻿# AI Doc QA Assistant PRD v1 - solo-2410311322-ai-doc-qa-assistant
+# AI Doc QA Assistant PRD v1 - solo-2410311322-ai-doc-qa-assistant
 
 ## 一句话产品说明
 

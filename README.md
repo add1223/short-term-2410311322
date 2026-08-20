@@ -1,4 +1,4 @@
-﻿# AI Doc QA Assistant - solo-2410311322
+# AI Doc QA Assistant - solo-2410311322
 
 自选项目:AI 文档问答助手(基于检索增强生成 RAG)。
 用户上传文档,系统基于检索增强生成回答;与集中期 arena-lite(对战/ELO/排行榜)主题、接口、角色完全不同。

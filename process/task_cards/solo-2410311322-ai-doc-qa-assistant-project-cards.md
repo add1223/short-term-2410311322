@@ -13,7 +13,7 @@
 - 输入: doc_id, question, llm
 - 输出: Answer(answer, has_answer, sources)
 - 覆盖: AC-2.1(有答+sources), AC-2.2(无答 has_answer=false sources=[]), E5(空 question), E6(doc 不存在 404)
-- 逻辑: embed question -> cosine_top_k -> score<threshold 直接拒绝 -> 否则 generate -> "未找到相关内容" 则 has_answer=false
+- 逻辑: embed question -> cosine_top_k -> score 低于 threshold 直接拒绝 -> 否则 generate -> "未找到相关内容" 则 has_answer=false
 - 状态: 完成
 
 ## TC-W3-3: 实现 main.py(5 路由 + 鉴权 + 错误处理)

@@ -1,4 +1,4 @@
-﻿# AI Doc QA Assistant DESIGN v1 - solo-2410311322-ai-doc-qa-assistant
+# AI Doc QA Assistant DESIGN v1 - solo-2410311322-ai-doc-qa-assistant
 
 > 对应 SPEC v1 的 5 端点与 11 条 AC。每条核心 AC 在文末"AC 映射"可定位到模块与测试。
 
@@ -54,7 +54,7 @@ class Answer:
     sources: list[Source]
 ```
 
-doc_id 格式: doc-<student_id>-<seq3> 如 doc-2410311322-001(对应 PRD 示例)。
+doc_id 格式: doc-{student_id}-{seq3} 如 doc-2410311322-001(对应 PRD 示例)。
 
 ### 文档状态机
 

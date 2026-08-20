@@ -1,0 +1,43 @@
+========================================================
+UAT - solo-2410311322-ai-doc-qa-assistant (真实 Ollama)
+========================================================
+
+## UAT-1 主路径: health + login + upload + ask(有答)
+命令: GET /health
+实际: {"status": "ok", "model": "qwen3.5:4b"}
+预期: status=ok
+结论: PASS
+命令: POST /login {role: editor}
+实际: {"token": "editor-16c40c4b96b11165", "role": "editor"}
+预期: 200, role=editor, token 以 editor- 开头
+结论: PASS
+命令: POST /documents {title, content}(editor)
+实际: {"doc_id": "doc-2410311322-001", "title": "TDD 讲义", "chunks": 5, "chars": 110}
+预期: 201, doc_id 形如 doc-2410311322-00x, chunks>=1
+结论: PASS
+命令: POST /documents/{id}/ask {question: 红绿循环是什么}
+实际: {"answer": "测试驱动开发 TDD 的核心节奏是红绿循环。红指的是先写一个会失败的测试，明确一个小目标；绿指的是写最少的代码让测试通过。\n\n[0, 1, 2]", "has_answer": true, "sources": [{"chunk_index": 1, "text": "红指的是先写一个会失败的测试,明确一个小目标。", "score": 0.727848438039647}, {"chunk_index": 4, "text": "TDD 的价值在于快速反馈和设计驱动。", "score": 0.7219727799708021}, {"chunk_index": 2, "text": "绿指的是写最少的代码让测试通过。", "score": 0.7012467525149337}, {"chunk_index": 0, "text": "测试驱动开发 TDD 的核心节奏是红绿循环。", "score": 0.6897417774482975}, {"chunk_index": 3, "text": "最后一步是重构,在不改变行为的前提下改善代码结构。", "score": 0.6812791100170209}]}
+预期: 200, has_answer=true, sources 非空(含 chunk_index)
+结论: PASS
+
+## UAT-2 错误路径: 无关问题 -> has_answer=false
+命令: POST /ask {question: 今天北京天气怎么样}
+实际: {"answer": "未找到相关内容", "has_answer": false, "sources": []}
+预期: 200, has_answer=false, sources=[]
+结论: PASS
+
+## UAT-3 错误路径: viewer 越权上传 -> 401
+命令: POST /documents (viewer token)
+实际: HTTP 401 {'detail': 'editor role required'}
+预期: 401
+结论: PASS
+
+## UAT-4 错误路径: 不存在 doc 提问 -> 404
+命令: POST /documents/doc-2410311322-999/ask
+实际: HTTP 404 {'detail': 'document not found'}
+预期: 404
+结论: PASS
+
+========================================================
+UAT 汇总: 7 PASS / 0 FAIL
+========================================================

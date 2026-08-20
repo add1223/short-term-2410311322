@@ -1,4 +1,4 @@
-﻿# W1 Environment Record - solo-2410311322-ai-doc-qa-assistant
+# W1 Environment Record - solo-2410311322-ai-doc-qa-assistant
 
 ## 运行环境
 
